@@ -1,0 +1,27 @@
+{
+    "apps": [{
+        "name": "NeteaseCloudMusicApi",
+        "script": "app.js",
+        "env": {
+            "COMMON_VARIABLE": "true"
+        },
+        "env_production": {
+            "NODE_ENV": "production"
+        }
+    }],
+    "deploy": {
+        "production": {
+            "user": "ubuntu",
+            "host": ["140.143.239.240"],
+            "port": 3000,
+            "ref": "origin/master",
+            "repo": "git@github.com:boo-boom/NeteaseCloudMusicApi.git",
+            "path": "/home/ubuntu/project/NeteaseCloudMusicApi",
+            "ssh_options": "StrictHostKeyChecking=no",
+            "post-deploy": "npm install && pm2 startOrRestart ecosystem.json --env production",
+            "env": {
+                "NODE_ENV": "production"
+            }
+        }
+    }
+}
